@@ -31,7 +31,7 @@ const UsersTable = () => {
   });
 
   const getAllUsers = () => {
-    fetch("http://localhost:4000/user/all", {
+    fetch("https://abdulelah-nest-js-production.up.railway.app/user/all", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -46,13 +46,13 @@ const UsersTable = () => {
 
   const handleDeleteUser = async () => {
     const response = await fetch(
-      `http://localhost:4000/user/${deleteAlert.username}`,
+      `https://abdulelah-nest-js-production.up.railway.app/user/${deleteAlert.username}`,
       {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      }
+      },
     );
 
     if (!response.ok) return toast.error("حدث خطأ محاولة حذف المستخدم");
@@ -76,7 +76,7 @@ const UsersTable = () => {
     });
 
     const response = await fetch(
-      `http://localhost:4000/user/${selectedUser.username}`,
+      `https://abdulelah-nest-js-production.up.railway.app/user/${selectedUser.username}`,
       {
         method: "PATCH",
         headers: {
@@ -84,7 +84,7 @@ const UsersTable = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(updatedFields),
-      }
+      },
     );
 
     if (!response.ok) return toast.error("حدث خطأ محاولة تعديل المستخدم");
@@ -116,7 +116,7 @@ const UsersTable = () => {
             .filter(
               (item) =>
                 item.username.toLowerCase().includes(search.toLowerCase()) ||
-                item.phoneNumber.toLowerCase().includes(search.toLowerCase())
+                item.phoneNumber.toLowerCase().includes(search.toLowerCase()),
             )
             .map((user) => (
               <TableRow key={user.id}>
@@ -173,7 +173,7 @@ const UsersTable = () => {
                       .includes(search.toLowerCase()) ||
                     item.phoneNumber
                       .toLowerCase()
-                      .includes(search.toLowerCase())
+                      .includes(search.toLowerCase()),
                 ).length
               }
             </TableCell>

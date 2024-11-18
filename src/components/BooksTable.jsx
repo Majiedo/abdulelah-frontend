@@ -37,7 +37,7 @@ const BooksTable = () => {
   });
 
   const getAllBooks = () => {
-    fetch("http://localhost:4000/book")
+    fetch("https://abdulelah-nest-js-production.up.railway.app/book")
       .then((res) => res.json())
       .then((data) => setBooks(data));
   };
@@ -47,12 +47,15 @@ const BooksTable = () => {
   }, []);
 
   const handleDeleteBook = async (id) => {
-    const response = await fetch(`http://localhost:4000/book/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+    const response = await fetch(
+      `https://abdulelah-nest-js-production.up.railway.app/book/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       },
-    });
+    );
 
     if (!response.ok) return toast.error("حدث خطأ محاولة حذف كتاب");
 
@@ -62,12 +65,15 @@ const BooksTable = () => {
   };
 
   const handleReturnBook = async (id) => {
-    const response = await fetch(`http://localhost:4000/book/return/${id}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+    const response = await fetch(
+      `https://abdulelah-nest-js-production.up.railway.app/book/return/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       },
-    });
+    );
 
     if (!response.ok) return toast.error("حدث خطأ محاولة استرجاع كتاب");
 
@@ -77,20 +83,23 @@ const BooksTable = () => {
   };
 
   const handleCreateBook = async (title, author, img, pages, lang) => {
-    const response = await fetch("http://localhost:4000/book", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
+    const response = await fetch(
+      "https://abdulelah-nest-js-production.up.railway.app/book",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          img,
+          author,
+          lang,
+          pages: Number(pages),
+        }),
       },
-      body: JSON.stringify({
-        title,
-        img,
-        author,
-        lang,
-        pages: Number(pages),
-      }),
-    });
+    );
 
     if (!response.ok) return toast.error("حدث خطأ محاولة اضافة كتاب");
 
@@ -101,20 +110,23 @@ const BooksTable = () => {
   };
 
   const handleEditBook = async (id, title, author, img, pages, lang) => {
-    const response = await fetch(`http://localhost:4000/book/edit/${id}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `https://abdulelah-nest-js-production.up.railway.app/book/edit/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          img,
+          author,
+          lang,
+          pages: Number(pages),
+        }),
       },
-      body: JSON.stringify({
-        title,
-        img,
-        author,
-        lang,
-        pages: Number(pages),
-      }),
-    });
+    );
 
     if (!response.ok) return toast.error("حدث خطأ محاولة تعديل كتاب");
 
@@ -155,7 +167,7 @@ const BooksTable = () => {
             .filter(
               (item) =>
                 item.title.toLowerCase().includes(search.toLowerCase()) ||
-                item.author.toLowerCase().includes(search.toLowerCase())
+                item.author.toLowerCase().includes(search.toLowerCase()),
             )
             .map((book) => (
               <TableRow key={book.id}>
@@ -222,7 +234,7 @@ const BooksTable = () => {
                 books.filter(
                   (item) =>
                     item.title.toLowerCase().includes(search.toLowerCase()) ||
-                    item.author.toLowerCase().includes(search.toLowerCase())
+                    item.author.toLowerCase().includes(search.toLowerCase()),
                 ).length
               }
             </TableCell>

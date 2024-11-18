@@ -10,18 +10,21 @@ const BookDetails = () => {
   const { slug } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:4000/book/${slug}`)
+    fetch(`https://abdulelah-nest-js-production.up.railway.app/book/${slug}`)
       .then((res) => res.json())
       .then((data) => setBook(data));
   }, [slug]);
 
   const handleBorrowBook = async () => {
-    const response = await fetch(`http://localhost:4000/book/${slug}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+    const response = await fetch(
+      `https://abdulelah-nest-js-production.up.railway.app/book/${slug}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       },
-    });
+    );
 
     if (!response.ok)
       return toast.error("حدث خطأ أثناء المحاولة لاستعارة الكتاب");

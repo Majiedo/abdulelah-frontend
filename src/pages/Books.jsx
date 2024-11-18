@@ -8,7 +8,7 @@ const Books = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:4000/book")
+    fetch("https://abdulelah-nest-js-production.up.railway.app/book")
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, []);

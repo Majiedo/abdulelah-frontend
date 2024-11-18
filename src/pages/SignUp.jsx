@@ -12,24 +12,30 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
-    const resposne = await fetch("http://localhost:4000/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const resposne = await fetch(
+      "https://abdulelah-nest-js-production.up.railway.app/auth/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phoneNumber, username, password }),
       },
-      body: JSON.stringify({ phoneNumber, username, password }),
-    });
+    );
 
     const data = await resposne.json();
 
     if (!data.accessToken)
       return toast.error("كلمة المرور او اسم المستخدم غير صحيح");
 
-    const userReq = await fetch("http://localhost:4000/user", {
-      headers: {
-        Authorization: `Bearer ${data.accessToken}`,
+    const userReq = await fetch(
+      "https://abdulelah-nest-js-production.up.railway.app/user",
+      {
+        headers: {
+          Authorization: `Bearer ${data.accessToken}`,
+        },
       },
-    });
+    );
 
     const user = await userReq.json();
 
