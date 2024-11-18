@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/NavBar";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -28,25 +29,26 @@ const Books = () => {
             .filter(
               (item) =>
                 item.title.toLowerCase().includes(search.toLowerCase()) ||
-                item.author.toLowerCase().includes(search.toLowerCase())
+                item.author.toLowerCase().includes(search.toLowerCase()),
             )
-            .map((item, index) => (
+            .map((book, index) => (
               <Link
-                to={`/books/${item.id}`}
                 key={index}
+                to={`/books/${book.id}`}
                 className="library__item"
               >
                 <img
-                  src={item.img}
-                  alt={item.title}
+                  src={book.img}
+                  alt={book.title}
                   className="library__image"
                 />
-                <h2 className="library__item-title">{item.title}</h2>
-                <p className="library__item-author">{item.author}</p>
+                <h2 className="library__item-title">{book.title}</h2>
+                <p className="library__item-author">{book.author}</p>
               </Link>
             ))}
         </div>
       </main>
+      <Footer />
     </React.Fragment>
   );
 };

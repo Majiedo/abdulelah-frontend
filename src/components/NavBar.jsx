@@ -21,7 +21,7 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-      <h2>logo</h2>
+      <img src="/logo.jpg" alt="logo" className="size-20 bg-red-500" />
       {isLoggedIn ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

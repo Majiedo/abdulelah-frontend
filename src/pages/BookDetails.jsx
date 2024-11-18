@@ -34,7 +34,7 @@ const BookDetails = () => {
   return (
     <div className="details">
       <BackButton />
-      <img src={book.img} alt={book.title} />
+      <img className="w-1/2 h-1/2" src={book.img} alt={book.title} />
       <h1>{book.title}</h1>
       <p>{book.author}</p>
       <p>{book.pages}</p>
