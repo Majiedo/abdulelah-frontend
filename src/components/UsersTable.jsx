@@ -31,7 +31,7 @@ const UsersTable = () => {
   });
 
   const getAllUsers = () => {
-    fetch("https://abdulelah-nest-js-production.up.railway.app/user/all", {
+    fetch("http://localhost:4000/user/all", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -46,7 +46,7 @@ const UsersTable = () => {
 
   const handleDeleteUser = async () => {
     const response = await fetch(
-      `https://abdulelah-nest-js-production.up.railway.app/user/${deleteAlert.username}`,
+      `http://localhost:4000/user/${deleteAlert.username}`,
       {
         method: "DELETE",
         headers: {
@@ -76,7 +76,7 @@ const UsersTable = () => {
     });
 
     const response = await fetch(
-      `https://abdulelah-nest-js-production.up.railway.app/user/${selectedUser.username}`,
+      `http://localhost:4000/user/${selectedUser.username}`,
       {
         method: "PATCH",
         headers: {
